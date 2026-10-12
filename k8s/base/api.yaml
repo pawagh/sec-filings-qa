@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secqa-api
+  labels: { app: secqa-api }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: secqa-api }
+  strategy:
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  template:
+    metadata:
+      labels: { app: secqa-api }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: /metrics
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+      initContainers:
+        # Idempotent; an advisory lock serializes replicas that start together.
+        - name: migrate
+          image: secqa-api
+          command: ["secqa-migrate"]
+          envFrom:
+            - secretRef: { name: secqa-secrets }
+      containers:
+        - name: api
+          image: secqa-api
+          ports: [{ containerPort: 8000, name: http }]
+          envFrom:
+            - configMapRef: { name: secqa-config }
+            - secretRef: { name: secqa-secrets }
+          startupProbe:          # model load can take a while on a cold node
+            httpGet: { path: /health, port: http }
+            failureThreshold: 30
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            periodSeconds: 15
+          readinessProbe:
+            httpGet: { path: /ready, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            requests: { cpu: 250m, memory: 1Gi }
+            limits: { memory: 2Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secqa-api
+spec:
+  selector: { app: secqa-api }
+  ports: [{ name: http, port: 80, targetPort: http }]

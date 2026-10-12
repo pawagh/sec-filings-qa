@@ -1,0 +1,35 @@
+# Local dev stack: Postgres+pgvector, API, UI.  `docker compose up -d db` is enough for ETL/dev.
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: secqa
+      POSTGRES_PASSWORD: secqa
+      POSTGRES_DB: secqa
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U secqa"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: { context: ., dockerfile: docker/api.Dockerfile }
+    environment:
+      DATABASE_URL: postgresql://secqa:secqa@db:5432/secqa
+      LLM_PROVIDER: ${LLM_PROVIDER:-none}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    ports: ["8000:8000"]
+    depends_on: { db: { condition: service_healthy } }
+    profiles: [app]
+
+  ui:
+    build: { context: ., dockerfile: docker/ui.Dockerfile }
+    environment:
+      API_URL: http://api:8000
+    ports: ["8501:8501"]
+    depends_on: [api]
+    profiles: [app]
+
+volumes:
+  pgdata:

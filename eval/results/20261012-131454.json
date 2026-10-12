@@ -1,0 +1,3097 @@
+{
+  "meta": {
+    "timestamp": "20261012-131454",
+    "router": "rules",
+    "llm_provider": "extractive (no LLM)"
+  },
+  "summary": {
+    "n_questions": 50,
+    "n_verified": 50,
+    "routing_accuracy": 1.0,
+    "numeric_exact_match_verified": 1.0,
+    "numbers_matched": "47/47",
+    "retrieval_recall_at_5": 1.0,
+    "retrieval_mrr": 0.85,
+    "citation_precision": 0.9323333333333333,
+    "answer_correctness": 0.86,
+    "latency_ms_p50": 89.5,
+    "latency_ms_p95": 577,
+    "by_type": {
+      "numeric": {
+        "n": 20,
+        "answer_correctness": 1.0,
+        "routing_accuracy": 1.0
+      },
+      "narrative": {
+        "n": 15,
+        "answer_correctness": 0.9333333333333333,
+        "routing_accuracy": 1.0
+      },
+      "hybrid": {
+        "n": 15,
+        "answer_correctness": 0.6,
+        "routing_accuracy": 1.0
+      }
+    }
+  },
+  "ablations": {
+    "hybrid": {
+      "recall_at_5": 1.0,
+      "mrr": 0.85
+    },
+    "hybrid (no filters)": {
+      "recall_at_5": 0.7666666666666667,
+      "mrr": 0.5305555555555556
+    },
+    "vector": {
+      "recall_at_5": 0.8666666666666667,
+      "mrr": 0.8
+    },
+    "vector (no filters)": {
+      "recall_at_5": 0.8333333333333334,
+      "mrr": 0.7333333333333333
+    },
+    "fts": {
+      "recall_at_5": 1.0,
+      "mrr": 0.8638888888888889
+    },
+    "fts (no filters)": {
+      "recall_at_5": 0.26666666666666666,
+      "mrr": 0.1288888888888889
+    }
+  },
+  "results": [
+    {
+      "id": "n01",
+      "type": "numeric",
+      "question": "What was Apple's revenue in fiscal 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 21,
+      "answer": "AAPL Revenue FY2024: $391.04B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000320193-25-000079",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "AAPL"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n02",
+      "type": "numeric",
+      "question": "How much did Microsoft spend on research and development in FY2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 3,
+      "answer": "MSFT R&D expense FY2025: $32.49B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "MSFT",
+          "fiscal_year": 2025,
+          "metric": "rd_expense",
+          "accession": "0001193125-26-323660",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "MSFT"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "rd_expense"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n03",
+      "type": "numeric",
+      "question": "What was Nvidia's net income in fiscal 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 4,
+      "answer": "NVDA Net income FY2025: $72.88B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "NVDA",
+          "fiscal_year": 2025,
+          "metric": "net_income",
+          "accession": "0001045810-26-000021",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "NVDA"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n04",
+      "type": "numeric",
+      "question": "What was Amazon's operating income in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "AMZN Operating income FY2024: $68.59B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AMZN",
+          "fiscal_year": 2024,
+          "metric": "operating_income",
+          "accession": "0001018724-26-000004",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "AMZN"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "operating_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n05",
+      "type": "numeric",
+      "question": "What were Alphabet's total assets at the end of 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 4,
+      "answer": "GOOGL Total assets FY2024: $450.26B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "GOOGL",
+          "fiscal_year": 2024,
+          "metric": "total_assets",
+          "accession": "0001652044-26-000018",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "GOOGL"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "total_assets"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n06",
+      "type": "numeric",
+      "question": "What was Meta's diluted EPS for 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 3,
+      "answer": "META Diluted EPS FY2024: $23.86.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "META",
+          "fiscal_year": 2024,
+          "metric": "eps_diluted",
+          "accession": "0001628280-26-003942",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000017/meta-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "META"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "eps_diluted"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n07",
+      "type": "numeric",
+      "question": "How did Tesla's revenue change from 2023 to 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 7,
+      "answer": "TSLA Revenue: FY2023 $96.77B; FY2024 $97.69B (+0.9% YoY); FY2025 $94.83B (-2.9% YoY). Change FY2023\u2192FY2025: -$1.95B (-2.0%), CAGR -1.0%.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "TSLA",
+          "fiscal_year": 2023,
+          "metric": "revenue",
+          "accession": "0001628280-26-003952",
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828024002390/tsla-20231231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "TSLA",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0001628280-26-003952",
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "TSLA",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0001628280-26-003952",
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "TSLA"
+        ],
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n08",
+      "type": "numeric",
+      "question": "What was Johnson & Johnson's R&D expense in 2023?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "JNJ R&D expense FY2023: $483.0M.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "JNJ",
+          "fiscal_year": 2023,
+          "metric": "rd_expense",
+          "accession": "0000200406-26-000016",
+          "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040624000013/jnj-20231231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "JNJ"
+        ],
+        "years": [
+          2023
+        ],
+        "metrics": [
+          "rd_expense"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n09",
+      "type": "numeric",
+      "question": "How much did Eli Lilly's revenue grow from 2024 to 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 8,
+      "answer": "LLY Revenue: FY2024 $45.04B; FY2025 $65.18B (+44.7% YoY). Change FY2024\u2192FY2025: $20.14B (+44.7%), CAGR +44.7%.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000059478-26-000013",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947825000067/lly-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0000059478-26-000013",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "LLY"
+        ],
+        "years": [
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n10",
+      "type": "numeric",
+      "question": "What was Walmart's net income in fiscal 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "WMT Net income FY2025: $19.44B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "WMT",
+          "fiscal_year": 2025,
+          "metric": "net_income",
+          "accession": "0000104169-26-000055",
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "WMT"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n11",
+      "type": "numeric",
+      "question": "What was Costco's net income in fiscal 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "COST Net income FY2024: $7.37B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "COST",
+          "fiscal_year": 2024,
+          "metric": "net_income",
+          "accession": "0000909832-26-000093",
+          "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983224000049/cost-20240901.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "COST"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n12",
+      "type": "numeric",
+      "question": "What was Coca-Cola's operating margin in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 4,
+      "answer": "KO Operating margin FY2024: 21.2%.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "KO",
+          "fiscal_year": 2024,
+          "metric": "operating_margin",
+          "accession": "0000021344-25-000011",
+          "url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "KO"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "operating_margin"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n13",
+      "type": "numeric",
+      "question": "How much did Apple spend on share repurchases in fiscal 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "AAPL Share repurchases FY2025: $90.71B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2025,
+          "metric": "share_repurchases",
+          "accession": "0000320193-25-000079",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "AAPL"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "share_repurchases"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n14",
+      "type": "numeric",
+      "question": "What was Visa's net income in fiscal 2025?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 4,
+      "answer": "V Net income FY2025: $20.06B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "V",
+          "fiscal_year": 2025,
+          "metric": "net_income",
+          "accession": "0001403161-25-000089",
+          "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316125000089/v-20250930.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "V"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n15",
+      "type": "numeric",
+      "question": "Which Information Technology company had the highest revenue in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 0.2,
+      "answer_correct": true,
+      "latency_ms": 7,
+      "answer": "Ranking by Revenue, FY2024 in Information Technology: 1. AAPL $391.04B; 2. MSFT $245.12B; 3. IBM $62.75B; 4. NVDA $60.92B; 5. CSCO $53.80B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000320193-24-000123",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "MSFT",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000950170-24-087843",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "IBM",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000051143-25-000015",
+          "url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0001045810-24-000029",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "CSCO",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000858877-24-000017",
+          "url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": {
+          "metric": "revenue",
+          "fiscal_year": 2024,
+          "sector": "Information Technology",
+          "descending": true,
+          "limit": 5
+        },
+        "sector": "Information Technology"
+      }
+    },
+    {
+      "id": "n16",
+      "type": "numeric",
+      "question": "Which Health Care company had the highest net margin in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 0.2,
+      "answer_correct": true,
+      "latency_ms": 1,
+      "answer": "Ranking by Net margin, FY2024 in Health Care: 1. MRK 26.7%; 2. LLY 23.5%; 3. JNJ 15.8%; 4. TMO 14.8%; 5. PFE 12.6%.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "MRK",
+          "fiscal_year": 2024,
+          "metric": "net_margin",
+          "accession": "0001628280-25-007732",
+          "url": "https://www.sec.gov/Archives/edgar/data/310158/000162828025007732/mrk-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2024,
+          "metric": "net_margin",
+          "accession": "0000059478-25-000067",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947825000067/lly-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "JNJ",
+          "fiscal_year": 2024,
+          "metric": "net_margin",
+          "accession": "0000200406-25-000038",
+          "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040625000038/jnj-20241229.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "TMO",
+          "fiscal_year": 2024,
+          "metric": "net_margin",
+          "accession": "0000097745-25-000010",
+          "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774525000010/tmo-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "PFE",
+          "fiscal_year": 2024,
+          "metric": "net_margin",
+          "accession": "0000078003-25-000054",
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800325000054/pfe-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "net_margin"
+        ],
+        "sections": [],
+        "rank": {
+          "metric": "net_margin",
+          "fiscal_year": 2024,
+          "sector": "Health Care",
+          "descending": true,
+          "limit": 5
+        },
+        "sector": "Health Care"
+      }
+    },
+    {
+      "id": "n17",
+      "type": "numeric",
+      "question": "What was JPMorgan's net income in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 3,
+      "answer": "JPM Net income FY2024: $58.47B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "JPM",
+          "fiscal_year": 2024,
+          "metric": "net_income",
+          "accession": "0001628280-26-008131",
+          "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "JPM"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n18",
+      "type": "numeric",
+      "question": "What were Caterpillar's capital expenditures in 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 2,
+      "answer": "CAT Capital expenditures FY2024: $1.99B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "CAT",
+          "fiscal_year": 2024,
+          "metric": "capex",
+          "accession": "0000018230-26-000008",
+          "url": "https://www.sec.gov/Archives/edgar/data/18230/000001823025000008/cat-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "CAT"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "capex"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n19",
+      "type": "numeric",
+      "question": "What was Pfizer's long-term debt at the end of 2024?",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 3,
+      "answer": "PFE Long-term debt FY2024: $57.41B.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "PFE",
+          "fiscal_year": 2024,
+          "metric": "long_term_debt",
+          "accession": "0000078003-26-000026",
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800325000054/pfe-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "PFE"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "long_term_debt"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "n20",
+      "type": "numeric",
+      "question": "Compare Netflix's operating income from 2023 to 2025.",
+      "verified": true,
+      "expected_route": "sql",
+      "route": "sql",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": null,
+      "reciprocal_rank": null,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 4,
+      "answer": "NFLX Operating income: FY2023 $6.95B; FY2024 $10.42B (+49.8% YoY); FY2025 $13.33B (+27.9% YoY). Change FY2023\u2192FY2025: $6.37B (+91.6%), CAGR +38.4%.",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "NFLX",
+          "fiscal_year": 2023,
+          "metric": "operating_income",
+          "accession": "0001065280-26-000034",
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000030/nflx-20231231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "NFLX",
+          "fiscal_year": 2024,
+          "metric": "operating_income",
+          "accession": "0001065280-26-000034",
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000044/nflx-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "NFLX",
+          "fiscal_year": 2025,
+          "metric": "operating_income",
+          "accession": "0001065280-26-000034",
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "sql",
+        "tickers": [
+          "NFLX"
+        ],
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "metrics": [
+          "operating_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r01",
+      "type": "narrative",
+      "question": "What risks does Apple describe about its supply chain and outsourcing partners?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 352,
+      "answer": "The Company has invested in manufacturing process equipment, much of which is held at certain of its outsourcing partners, and has made prepayments to certain of its suppliers associated with long-term supply agreements. [1] While these arrangements help ensure the supply of components and finished goods, if these outsourcing partners or suppliers experience severe financial problems or other disruptions in their business, such continued supply can be disrupted or terminated, and the recoverability of manufacturing process equipment or prepayments can be negatively impacted. [1] Changes or additions to the Company's supply chain require considerable time and resources and involve significant risks and uncertainties, including exposure to additional regulatory and operational risks. [1] Changes or additions to the Company's supply chain require considerable time and resources and involve significant risks and uncertainties. [2]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "AAPL",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000320193-24-000123",
+          "chunk_id": 155,
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AAPL",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000320193-23-000106",
+          "chunk_id": 35,
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "AAPL"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r02",
+      "type": "narrative",
+      "question": "How does Microsoft describe competition in artificial intelligence?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 643,
+      "answer": "Microsoft Power Platform helps domain experts drive productivity gains with low-code/no-code tools, robotic process automation, virtual agents, and business intelligence. [1] Microsoft is now innovating and expanding our portfolio with AI capabilities to help people and organizations overcome today's challenges and emerge stronger. [2] Our investment in AI spans the entire company, from Microsoft Teams and Outlook, to Bing and Xbox, and we are infusing generative AI capability into our consumer and commercial offerings to deliver copilot capability for all services across the Microsoft Cloud. [2] Microsoft Power Platform is helping domain experts drive productivity gains with low-code/no-code tools, robotic process automation, virtual agents, and business intelligence. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000950170-24-087843",
+          "chunk_id": 566,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000950170-23-035122",
+          "chunk_id": 348,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000950170-23-035122",
+          "chunk_id": 352,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "MSFT"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r03",
+      "type": "narrative",
+      "question": "What does Nvidia say about export controls affecting sales to China?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 577,
+      "answer": "Export controls could disrupt our supply chain and distribution channels, negatively impacting our ability to serve demand, including in markets outside China and for our gaming products. [1] Excessive or shifting export controls have already encouraged and may in the future encourage overseas governments to request that our customers purchase from our competitors rather than NVIDIA or other U.S. firms, harming our business, market position, and financial results. [2] As a result, excessive or shifting export controls may negatively impact demand for our products and services not only in China, but also in other markets, such as Europe, Latin America, and Southeast Asia. [2] The USG has already imposed export controls restricting certain gaming GPUs, and if the USG expands such controls to restrict additional gaming products, it may disrupt a significant portion of our supply and distribution chain and negatively impact sales of such products to markets outside China, including the U.S. and Europe. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001045810-24-000029",
+          "chunk_id": 1853,
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001045810-24-000029",
+          "chunk_id": 1864,
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001045810-24-000029",
+          "chunk_id": 1863,
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "NVDA"
+        ],
+        "years": [],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r04",
+      "type": "narrative",
+      "question": "What risks does Tesla cite about dependence on Elon Musk?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 593,
+      "answer": "We are highly dependent on the services of Elon Musk, Technoking of Tesla and our Chief Executive Officer. [1] We are highly dependent on the services of Elon Musk, Technoking of Tesla and our Chief Executive Officer. [1] We are highly dependent on the services of Elon Musk, Technoking of Tesla and our Chief Executive Officer. [2] We are highly dependent on the services of Elon Musk, Technoking of Tesla and our Chief Executive Officer. [2]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "TSLA",
+          "fiscal_year": 2025,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001628280-26-003952",
+          "chunk_id": 11252,
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "TSLA",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001628280-25-003063",
+          "chunk_id": 11050,
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "TSLA"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r05",
+      "type": "narrative",
+      "question": "What does Boeing say about 737 production and quality issues?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer_correct": true,
+      "latency_ms": 580,
+      "answer": "1.An audit involving the 737-9 production line and its suppliers to evaluate Boeing's compliance with approved quality procedures, 2.Increased monitoring of Boeing's 737-9 in-service events, and 3.An assessment of safety risks around delegated authority and quality oversight, and examination of options to move these functions under independent third parties. [1] On January 24, 2024, the FAA stated that it will not approve production rate increases or additional production lines for the 737 MAX until it is satisfied that Boeing is in full compliance with required quality control procedures. [1] On January 24, 2024, the FAA stated that it will not approve production rate increases or additional production lines for the 737 MAX until it is satisfied that we are in full compliance with required quality control procedures. [2] In addition, the FAA communicated it will not approve production rate increases beyond 38 per month or additional production lines until Boeing has complied with required quality and safety standards. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "BA",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000012927-24-000010",
+          "chunk_id": 44518,
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292724000010/ba-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "BA",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000012927-24-000010",
+          "chunk_id": 26929,
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292724000010/ba-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "BA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000012927-25-000015",
+          "chunk_id": 44620,
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292725000015/ba-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "BA"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r06",
+      "type": "narrative",
+      "question": "What cybersecurity risks does JPMorgan describe?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 523,
+      "answer": "A successful cyber attack affecting JPMorgan Chase could cause significant harm to JPMorgan Chase and its clients and customers. [2] These cyber attacks can take many forms, including attempts to introduce computer viruses or malicious code, which are commonly referred to as \u201cmalware,\u201d into JPMorgan Chase's systems. [2] JPMorgan Chase has experienced security breaches due to cyber attacks in the past, and it is inevitable that additional breaches will occur in the future. [3] A principal reason that JPMorgan Chase cannot provide absolute security against cyber attacks is that it may not always be possible to anticipate, detect or recognize threats to JPMorgan Chase's systems, or to implement effective preventive measures against all breaches because: [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "JPM",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000019617-24-000225",
+          "chunk_id": 1086,
+          "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "JPM",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000019617-24-000225",
+          "chunk_id": 1087,
+          "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "JPM"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r07",
+      "type": "narrative",
+      "question": "Describe Costco's membership business model.",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 85,
+      "answer": "Our membership was made up of the following (in thousands): 2024 2023 2022 Gold Star 63,700 58,800 54,000 Business, including affiliates 12,500 12,200 11,800 [1] Costco Travel offers vacation packages, car rentals, cruises and other travel products exclusively for Costco members (offered in the U.S., Canada, and the U.K.). [2] Costco Travel offers vacation packages, car rentals, cruises, hotels, and other travel products exclusively for Costco members (offered in the U.S., Canada, and the U.K.). [3] Membership Our members may utilize their memberships at all of our warehouses and e-commerce sites. [4]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "COST",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000909832-24-000049",
+          "chunk_id": 37690,
+          "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983224000049/cost-20240901.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "COST",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000909832-24-000049",
+          "chunk_id": 37687,
+          "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983224000049/cost-20240901.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "COST",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000909832-23-000042",
+          "chunk_id": 37633,
+          "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983223000042/cost-20230903.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "COST",
+          "fiscal_year": 2025,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000909832-25-000101",
+          "chunk_id": 37744,
+          "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "COST"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r08",
+      "type": "narrative",
+      "question": "What does Pfizer say about patent expirations and loss of exclusivity?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 171,
+      "answer": "In particular, certain of our products have experienced patent-based expirations or loss of regulatory exclusivity in certain markets in the last few years, and we expect certain products to face increased generic competition over the next few years. [1] While additional patent-based or regulatory exclusivity expiries will continue, we expect a moderate impact of reduced revenues due to patent expiries in 2025 and anticipate a more significant impact of reduced revenues from patent-based or regulatory exclusivity expiries in 2026 through 2030 as several of our in-line products experience these expirations. [1] Certain of our products have experienced patent-based expirations or loss of regulatory exclusivity in certain markets in the last few years, and we expect certain products to face increased generic competition over the next few years. [2] While additional patent-based or regulatory exclusivity expiries will continue, we expect a moderate impact of reduced revenues due to patent expiries in 2025 and anticipate a more significant impact of reduced revenues from patent-based or regulatory exclusivity expiries in 2026 through 2030 as several of our in-line products experience these expirations. [2]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "PFE",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000078003-25-000054",
+          "chunk_id": 17949,
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800325000054/pfe-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "PFE",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000078003-25-000054",
+          "chunk_id": 39423,
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800325000054/pfe-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "PFE"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r09",
+      "type": "narrative",
+      "question": "What regulatory risks does UnitedHealth face around Medicare?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 85,
+      "answer": "Our pharmacy care services businesses face regulatory and operational risks and uncertainties which may differ from the risks of our other businesses. [1] Our pharmacy care services businesses face regulatory and operational risks and uncertainties which may differ from the risks of our other businesses. [2] For example, CMS in the past has reduced or frozen Medicare Advantage benchmarks and additional cuts to Medicare Advantage benchmarks are possible. [3] Our pharmacy care services businesses face regulatory and operational risks and uncertainties which may differ from the risks of our other businesses. [4]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "UNH",
+          "fiscal_year": 2025,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000731766-26-000062",
+          "chunk_id": 21416,
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "UNH",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000731766-24-000081",
+          "chunk_id": 21057,
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176624000081/unh-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "UNH",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000731766-25-000063",
+          "chunk_id": 21222,
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176625000063/unh-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "UNH",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000731766-25-000063",
+          "chunk_id": 21231,
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176625000063/unh-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "UNH"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r10",
+      "type": "narrative",
+      "question": "How does Netflix describe its competition?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 519,
+      "answer": "ABOUT US Netflix, Inc. (\u201cNetflix\u201d, \u201cthe Company\u201d, \u201cregistrant\u201d, \u201cwe\u201d, or \u201cus\u201d) is one of the world's leading entertainment services with over 260 million paid memberships in over 190 countries enjoying TV series, films and games across a wide variety of genres and languages. [1] ABOUT US Netflix, Inc. (\u201cNetflix\u201d, \u201cthe Company\u201d, \u201cregistrant\u201d, \u201cwe\u201d, or \u201cus\u201d) is one of the world's leading entertainment services with approximately 302 million paid memberships in over 190 countries enjoying TV series, films and games across a wide variety of genres and languages. [2] ABOUT US Netflix, Inc. (\u201cNetflix\u201d, the \u201cCompany\u201d, \u201cregistrant\u201d, \u201cwe\u201d, or \u201cus\u201d) is one of the world's leading entertainment services offering TV series, films, games and live programming across a wide variety of genres and languages. [3] COMPETITION The market for entertainment video is intensely competitive and subject to rapid change. [4]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0001065280-24-000030",
+          "chunk_id": 9195,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000030/nflx-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0001065280-25-000044",
+          "chunk_id": 9331,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000044/nflx-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2025,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0001065280-26-000034",
+          "chunk_id": 9464,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0001065280-24-000030",
+          "chunk_id": 9196,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000030/nflx-20231231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "NFLX"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r11",
+      "type": "narrative",
+      "question": "What does Lockheed Martin say about its dependence on the U.S. government?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": false,
+      "latency_ms": 163,
+      "answer": "Government agencies and entities, principally all branches of the U.S. military and NASA. [1] We also contract with similar government authorities in other countries, either under the foreign military sales (FMS) program, contracted through the U.S. [1] Government agencies and entities, principally all branches of the U.S. military and NASA. [2] China may impose additional sanctions that could adversely affect Lockheed Martin, our suppliers, teammates and/or partners in the future. [4]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "LMT",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000936468-25-000009",
+          "chunk_id": 28359,
+          "url": "https://www.sec.gov/Archives/edgar/data/936468/000093646825000009/lmt-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "LMT",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000936468-24-000010",
+          "chunk_id": 28112,
+          "url": "https://www.sec.gov/Archives/edgar/data/936468/000093646824000010/lmt-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "LMT",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000936468-25-000009",
+          "chunk_id": 28409,
+          "url": "https://www.sec.gov/Archives/edgar/data/936468/000093646825000009/lmt-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "LMT"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r12",
+      "type": "narrative",
+      "question": "What climate change and energy transition risks does Chevron cite?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 73,
+      "answer": "As a global energy company, Chevron is subject to a variety of risks that could materially impact the company's results of operations and financial condition. [1] BUSINESS AND OPERATIONAL RISK FACTORS Chevron is exposed to the effects of changing commodity prices Chevron is primarily in a commodities business that has a history of price volatility. [1] In addition, Chevron participates, along with other companies, institutes, universities, trade associations and other organizations, in various initiatives, campaigns, and other projects that express various ambitions, aspirations and goals related to climate change, emissions and energy transition. [2] In addition, Chevron participates, along with other companies, institutes, universities, trade associations and other organizations, in various initiatives, campaigns, and other projects that express various ambitions, aspirations and goals related to climate change, emissions and energy transition. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "CVX",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000093410-24-000013",
+          "chunk_id": 25944,
+          "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341024000013/cvx-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "CVX",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000093410-25-000009",
+          "chunk_id": 26105,
+          "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341025000009/cvx-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "CVX",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000093410-24-000013",
+          "chunk_id": 25982,
+          "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341024000013/cvx-20231231.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "CVX"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r13",
+      "type": "narrative",
+      "question": "What are Starbucks' reportable business segments?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 95,
+      "answer": "We have three reportable operating segments: 1) North America, which is inclusive of the U.S. and Canada; 2) International, which is inclusive of China, Japan, Asia Pacific, Europe, Middle East and Africa, Latin America and Caribbean; and 3) Channel Development. [1] Non-reportable operating segments and unallocated corporate expenses are reported within Corporate and Other. [1] Revenues from our reportable operating segments as a percentage of total net revenues for fiscal 2023 were as follows: North America (74%), International (21%) and Channel Development (5%). [1] We have three reportable operating segments: 1) North America, which is inclusive of the U.S. and Canada; 2) International, which is inclusive of China, Japan, Asia Pacific, Europe, Middle East, Africa, Latin America, and the Caribbean; and 3) Channel Development. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "SBUX",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000829224-23-000058",
+          "chunk_id": 37075,
+          "url": "https://www.sec.gov/Archives/edgar/data/829224/000082922423000058/sbux-20231001.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "SBUX",
+          "fiscal_year": 2024,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000829224-24-000057",
+          "chunk_id": 37177,
+          "url": "https://www.sec.gov/Archives/edgar/data/829224/000082922424000057/sbux-20240929.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "SBUX"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r14",
+      "type": "narrative",
+      "question": "What does Intel say about its foundry strategy?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 144,
+      "answer": "We plan to create greater independence for our foundry operations by establishing Intel Foundry as an independent subsidiary. [1] We expect this to provide Intel Foundry with clearer separation and independence for foundry customers and suppliers and increase our flexibility to evaluate separate sources of funding and capital structures for our foundry and product businesses. [1] Intel Foundry Market and Business Overview Intel Foundry, comprising technology development, manufacturing and foundry services, seeks to deliver the best systems foundry capabilities to support Intel Products and external customers. [2] As part of our strategy, we announced plans to establish Intel Foundry as a major provider of foundry capacity to manufacture semiconductors for others and to implement an internal foundry operating model through updates to our processes, systems, and guardrails between our manufacturing and our individual product-based business units. [3]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000050863-25-000009",
+          "chunk_id": 34293,
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000050863-25-000009",
+          "chunk_id": 34290,
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000050863-25-000009",
+          "chunk_id": 29158,
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "INTC"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "r15",
+      "type": "narrative",
+      "question": "What litigation and regulatory risks does Visa cite about interchange fees?",
+      "verified": true,
+      "expected_route": "rag",
+      "route": "rag",
+      "route_correct": true,
+      "numbers_expected": 0,
+      "numbers_matched": 0,
+      "numeric_correct": null,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 98,
+      "answer": "Interchange reimbursement fees, certain operating rules and related practices continue to be subject to increased government regulation globally, and regulatory authorities and central banks in a number of jurisdictions have reviewed or are reviewing these fees, rules and practices. [1] Interchange reimbursement fees, certain operating rules and related practices continue to be subject to increased government regulation globally, and regulatory authorities and central banks in a number of jurisdictions have reviewed or are reviewing these fees, rules, and practices. [2] In addition, settlement terms, judgments, orders, pressures or events in or resulting from actions have impacted and may continue to impact our business by creating uncertainty for our business or by influencing or requiring us to modify, among other things, the default interchange reimbursement rates we set, the Visa operating rules or the way in which we enforce those rules, our fees or pricing, or the way we do business. [3] In addition, settlement terms, judgments, orders or pressures resulting from actions may harm our business by influencing or requiring us to modify, among other things, the default interchange reimbursement rates we set, the Visa operating rules or the way in which we enforce those rules, our fees or pricing, or the way we do business. [4]",
+      "citations": [
+        {
+          "type": "filing_text",
+          "ticker": "V",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001403161-23-000099",
+          "chunk_id": 24545,
+          "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316123000099/v-20230930.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "V",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001403161-24-000058",
+          "chunk_id": 24753,
+          "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316124000058/v-20240930.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "V",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001403161-24-000058",
+          "chunk_id": 24785,
+          "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316124000058/v-20240930.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "V",
+          "fiscal_year": 2023,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0001403161-23-000099",
+          "chunk_id": 24571,
+          "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316123000099/v-20230930.htm"
+        }
+      ],
+      "plan": {
+        "route": "rag",
+        "tickers": [
+          "V"
+        ],
+        "years": [],
+        "metrics": [],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h01",
+      "type": "hybrid",
+      "question": "How did Apple's R&D spending change from 2022 to 2024, and what risks did it cite?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.25,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 138,
+      "answer": "AAPL R&D expense: FY2022 $26.25B; FY2023 $29.91B (+14.0% YoY); FY2024 $31.37B (+4.9% YoY). Change FY2022\u2192FY2024: $5.12B (+19.5%), CAGR +9.3%.\n\nSuch endeavors may involve significant risks and uncertainties, including distraction of management from current operations, greater-than-expected liabilities and expenses, economic, political, legal and regulatory challenges associated with operating in new businesses, regions or countries, inadequate return on capital, potential impairment of tangible and intangible assets, and significant write-offs. [4] Investment and acquisition transactions are exposed to additional risks, including failing to obtain required regulatory approvals on a timely basis or at all, or the imposition of onerous conditions that could delay or prevent the Company from completing a transaction or otherwise limit the Company's ability to fully realize the anticipated benefits of a transaction. [4] These new ventures are inherently risky and may not be successful. [4] The Company's retail stores are subject to numerous risks and uncertainties. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2022,
+          "metric": "rd_expense",
+          "accession": "0000320193-24-000123",
+          "url": null
+        },
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2023,
+          "metric": "rd_expense",
+          "accession": "0000320193-25-000079",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "AAPL",
+          "fiscal_year": 2024,
+          "metric": "rd_expense",
+          "accession": "0000320193-25-000079",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AAPL",
+          "fiscal_year": 2024,
+          "section": "item1a",
+          "section_label": "Risk Factors",
+          "accession": "0000320193-24-000123",
+          "chunk_id": 181,
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "AAPL"
+        ],
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "metrics": [
+          "rd_expense"
+        ],
+        "sections": [
+          "item1a"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h02",
+      "type": "hybrid",
+      "question": "How did Nvidia's revenue change from 2024 to 2025, and what drove the growth?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.5,
+      "citation_precision": 0.5,
+      "answer_correct": false,
+      "latency_ms": 89,
+      "answer": "NVDA Revenue: FY2024 $60.92B; FY2025 $130.50B (+114.2% YoY). Change FY2024\u2192FY2025: $69.58B (+114.2%), CAGR +114.2%.\n\nStrong demand was driven by enterprise software and consumer internet applications, and multiple industry verticals including automotive, financial services, and healthcare. [1] The increase primarily reflected growth in self-driving platforms. [1] Gross margin increased in fiscal year 2024, primarily driven by Data Center revenue growth and lower net inventory provisions as a percentage of revenue. [1] Graphics revenue \u2013 The year-on-year increase was led by growth in Gaming of 15% driven by higher sell-in to partners following the normalization of channel inventory levels. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0001045810-26-000021",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "NVDA",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0001045810-26-000021",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001045810-24-000029",
+          "chunk_id": 1906,
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NVDA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001045810-24-000029",
+          "chunk_id": 1923,
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "NVDA"
+        ],
+        "years": [
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h03",
+      "type": "hybrid",
+      "question": "What was Intel's net income in 2024 and why did it decline?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.5,
+      "citation_precision": 1.0,
+      "answer_correct": false,
+      "latency_ms": 96,
+      "answer": "INTC Net income FY2024: -$18.76B.\n\nOperating Segment Cost of Sales and Operating Expenses Summary Total Intel Products cost of sales was $23.8 billion in 2024, down $303 million from 2023. \u25aaCCG cost of sales decreased $37 million from 2023, primarily driven by lower samples and lower cost of sales due to the exit of legacy businesses. [1] These decreases were substantially offset by higher cost of sales due to higher unit cost from an increased mix of Intel 4 and Intel 7 products and higher notebook volume sold in 2024. \u25aaDCAI cost of sales increased $372 million from 2023, primarily driven by higher period charges due to $922 million in Gaudi AI accelerator inventory-related charges recognized in 2024, and higher server unit cost primarily driven by an increased mix of Intel 7 products sold in 2024. [1] These cost of sales increases were partially offset by lower period charges driven by the sell-through of previously reserved inventory and lower non-accelerator inventory reserves taken in 2024. \u25aaNEX cost of sales decreased $638 million from 2023, primarily driven by lower period charges from the sell-through of previously reserved inventory and lower reserves taken in 2024. [1] These decreases in cost of sales were partially offset by higher unit costs primarily from an increased mix of Intel 7 products sold in 2023. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "metric": "net_income",
+          "accession": "0000050863-26-000011",
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000050863-25-000009",
+          "chunk_id": 34286,
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "INTC",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000050863-25-000009",
+          "chunk_id": 34287,
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "INTC"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h04",
+      "type": "hybrid",
+      "question": "How did Microsoft's operating income change from 2024 to 2025, and what drove it?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 0.8,
+      "answer_correct": true,
+      "latency_ms": 142,
+      "answer": "MSFT Operating income: FY2024 $109.43B; FY2025 $128.53B (+17.4% YoY). Change FY2024\u2192FY2025: $19.09B (+17.4%), CAGR +17.4%.\n\nOperating income increased $19.1 billion or 17% with growth across each of our segments. [1] Operating income increased $20.9 billion or 24% driven by growth across each of our segments. [2] Item 7 SEGMENT RESULTS OF OPERATIONS (In millions, except percentages) 2024 2023 $ 77,728 $ 69,274 12% 105,362 87,907 20% 62,032 54,734 13% $ 245,122 $ 211,915 16% Operating Income $ 40,540 $ 34,189 19% 49,584 37,884 31% 19,309 16,450 17% $ 109,433 $ 88,523 24% Reportable Segments Revenue increased $8.5 billion or 12%. \u2022Office Commercial products and cloud services revenue increased $5.8 billion or 14%. [2] Operating income increased $19.1 billion or 17% with growth across each of our segments. [3]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "MSFT",
+          "fiscal_year": 2024,
+          "metric": "operating_income",
+          "accession": "0001193125-26-323660",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "MSFT",
+          "fiscal_year": 2025,
+          "metric": "operating_income",
+          "accession": "0001193125-26-323660",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000950170-25-100235",
+          "chunk_id": 32890,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000950170-24-087843",
+          "chunk_id": 32837,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "MSFT",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000950170-25-100235",
+          "chunk_id": 32889,
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "MSFT"
+        ],
+        "years": [
+          2024,
+          2025
+        ],
+        "metrics": [
+          "operating_income"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h05",
+      "type": "hybrid",
+      "question": "What were Meta's capital expenditures in 2025 and why did they increase?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 133,
+      "answer": "META Capital expenditures FY2025: $69.69B.\n\nIn 2025, the average price per ad increased by 9%, as compared with an increase of 10% in 2024, year-over-year. [1] This increase was partially offset by a higher number of ad impressions delivered, especially in geographies and in products, such as Reels, that monetize at lower rates. [1] The increase was mostly driven by paid messaging from WhatsApp and Meta Verified subscriptions. [4] The increase was driven by an increase in sales of AI glasses, partially offset by a decrease in Meta Quest sales. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "META",
+          "fiscal_year": 2025,
+          "metric": "capex",
+          "accession": "0001628280-26-003942",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "META",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001628280-26-003942",
+          "chunk_id": 35905,
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "META",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001628280-26-003942",
+          "chunk_id": 35906,
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "META"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "capex"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h06",
+      "type": "hybrid",
+      "question": "How did Boeing's revenue change from 2023 to 2024 and what explains it?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": false,
+      "latency_ms": 129,
+      "answer": "BA Revenue: FY2023 $77.79B; FY2024 $66.52B (-14.5% YoY). Change FY2023\u2192FY2024: -$11.28B (-14.5%), CAGR -14.5%.\n\nChanges in Accounts payable during 2024 compared to 2023 reflects slowed/paused production primarily in our commercial airplanes business. [1] The increase in Unbilled receivables during 2024 was primarily driven by revenue recognized in excess of billings at BDS compared to higher billings at BDS and BGS during 2023. [1] The increase in Accrued liabilities was primarily driven by higher accrued losses on BDS fixed-price development programs. [1] BGS revenues increased by $827 million primarily due to higher commercial services revenue. [3]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "BA",
+          "fiscal_year": 2023,
+          "metric": "revenue",
+          "accession": "0001628280-26-004357",
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292724000010/ba-20231231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "BA",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0001628280-26-004357",
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292725000015/ba-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "BA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000012927-25-000015",
+          "chunk_id": 44643,
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292725000015/ba-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "BA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000012927-25-000015",
+          "chunk_id": 44592,
+          "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292725000015/ba-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "BA"
+        ],
+        "years": [
+          2023,
+          2024
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h07",
+      "type": "hybrid",
+      "question": "What was Tesla's gross margin in 2024, and what does it say about pricing?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.25,
+      "citation_precision": 1.0,
+      "answer_correct": false,
+      "latency_ms": 107,
+      "answer": "TSLA Gross margin FY2024: 17.9%.\n\nGross margin for total automotive & services and other segment decreased from 18.2% to 16.9% in the year ended December 31, 2024 as compared to the year ended December 31, 2023. [1] The changes in gross margin are primarily due to the automotive gross margin factors discussed above. [1] In agreements for solar energy systems and PPAs where we are the lessor, the cost of revenue is primarily comprised of depreciation of the cost of leased solar energy systems, maintenance costs associated with those systems and amortization of any initial direct costs. 2024 compared to 2023 [1] Gross margin for energy generation and storage increased from 18.9% to 26.2% in the year ended December 31, 2024 as compared to the year ended December 31, 2023, primarily due to margin improvements for our energy storage products driven by cost reductions, including benefits from IRA manufacturing credits, and a higher proportion of our storage business, which operated at a higher gross margin, within the segment as compared to the prior periods. [2]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "TSLA",
+          "fiscal_year": 2024,
+          "metric": "gross_margin",
+          "accession": "0001628280-25-003063",
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "TSLA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001628280-25-003063",
+          "chunk_id": 11141,
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "TSLA",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001628280-25-003063",
+          "chunk_id": 11142,
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "TSLA"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "gross_margin"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h08",
+      "type": "hybrid",
+      "question": "How did Eli Lilly's revenue change from 2023 to 2025, and which products drove it?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 0.6666666666666666,
+      "answer_correct": true,
+      "latency_ms": 156,
+      "answer": "LLY Revenue: FY2023 $34.12B; FY2024 $45.04B (+32.0% YoY); FY2025 $65.18B (+44.7% YoY). Change FY2023\u2192FY2025: $31.05B (+91.0%), CAGR +38.2%.\n\nThe following table summarizes our revenue, including net product revenue and collaboration and other revenue, by product in 2025 compared with 2024: 2025 2024 Percent Change U.S. [1] Total Total Mounjaro $ 13,651 $ 9,315 $ 22,965 $ 11,540 99 Zepbound(1) 13,484 58 13,542 4,926 175 Verzenio 3,464 2,259 5,723 5,307 8 Other products 12,882 10,066 22,949 23,270 (1) Revenue $ 43,481 $ 21,698 $ 65,179 $ 45,043 45 (1) Tirzepatide is marketed for obesity under the brand name Zepbound in Canada, Japan, and the U.S. [1] We manufacture and distribute our products through facilities in the United States (U.S.), including Puerto Rico, and in Europe and Asia. [2] We manufacture and distribute our products through facilities in the United States (U.S.), including Puerto Rico, and in Europe and Asia. [3]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2023,
+          "metric": "revenue",
+          "accession": "0000059478-26-000013",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947824000065/lly-20231231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000059478-26-000013",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947825000067/lly-20241231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "LLY",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0000059478-26-000013",
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "LLY",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000059478-26-000013",
+          "chunk_id": 41176,
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "LLY",
+          "fiscal_year": 2023,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000059478-24-000065",
+          "chunk_id": 40759,
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947824000065/lly-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "LLY",
+          "fiscal_year": 2025,
+          "section": "item1",
+          "section_label": "Business",
+          "accession": "0000059478-26-000013",
+          "chunk_id": 41057,
+          "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "LLY"
+        ],
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item1",
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h09",
+      "type": "hybrid",
+      "question": "What was Pfizer's revenue in 2023 and why did it fall?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 90,
+      "answer": "PFE Revenue FY2023: $59.55B.\n\nThe operational decrease was primarily driven by significant declines in revenues from Comirnaty and Paxlovid, including a $3.5 billion non-cash revenue reversal for Paxlovid recorded in the fourth quarter of 2023. [1] The operational decrease in emerging markets revenues was primarily driven by declines from Comirnaty and Paxlovid, partially offset by growth from Lorbrena, Zavicefta and Eliquis. [3] Chargebacks 9,828 7,560 6,122 Sales allowances 6,790 5,460 4,809 Sales returns and cash discounts(a) 5,619 1,290 1,054 Total $ 30,048 $ 19,697 $ 17,178 (a) The increase in sales returns and cash discounts in 2023 was primarily due to the revenue reversal of $3.5 billion in the fourth quarter of 2023, related to the expected return of an estimated 6.5 million treatment courses of EUA-labeled U.S. government Paxlovid inventory (see Note 17C). [4] For information on our accruals for product revenue deductions, including the balance sheet classification of these accruals, see Note 1G. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "PFE",
+          "fiscal_year": 2023,
+          "metric": "revenue",
+          "accession": "0000078003-26-000026",
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800324000039/pfe-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "PFE",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000078003-24-000039",
+          "chunk_id": 39205,
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800324000039/pfe-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "PFE",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000078003-24-000039",
+          "chunk_id": 39244,
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800324000039/pfe-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "PFE",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000078003-24-000039",
+          "chunk_id": 39246,
+          "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800324000039/pfe-20231231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "PFE"
+        ],
+        "years": [
+          2023
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h10",
+      "type": "hybrid",
+      "question": "How did Walmart's revenue change from 2024 to 2025, and what drove eCommerce growth?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 151,
+      "answer": "WMT Revenue: FY2024 $648.12B; FY2025 $680.99B (+5.1% YoY). Change FY2024\u2192FY2025: $32.86B (+5.1%), CAGR +5.1%.\n\nWalmart U.S. eCommerce sales positively contributed approximately 2.9% and 2.6% to comparable sales for fiscal 2025 and 2024, respectively, which was primarily driven by store-fulfilled pickup and delivery. [1] For fiscal 2025, the increase in gross profit rate was primarily due to improved operational efficiencies related to merchandise flow and increased margins in fuel, partially offset by higher eCommerce fulfillment costs. [2] Walmart U.S. eCommerce sales positively contributed approximately 2.6% and 0.7% to comparable sales for fiscal 2024 and 2023, respectively, which was primarily driven by store pickup and delivery. [3] For fiscal 2024, comparable sales growth was driven by growth in transactions combined with growth in average ticket, including strong sales in grocery and health and wellness.Walmart U.S. eCommerce sales positively contributed approximately 2.9% and 2.6% to comparable sales for fiscal 2025 and 2024, respectively, which was primarily driven by store-fulfilled pickup and delivery. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "WMT",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000104169-26-000055",
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000056/wmt-20240131.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "WMT",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0000104169-26-000055",
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "WMT",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000104169-25-000021",
+          "chunk_id": 37591,
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "WMT",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000104169-25-000021",
+          "chunk_id": 37599,
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "WMT",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000104169-24-000056",
+          "chunk_id": 37480,
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000056/wmt-20240131.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "WMT",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000104169-25-000021",
+          "chunk_id": 37572,
+          "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "WMT"
+        ],
+        "years": [
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h11",
+      "type": "hybrid",
+      "question": "What was UnitedHealth's net income in 2025 and what cost pressures did it describe?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": false,
+      "latency_ms": 126,
+      "answer": "UNH Net income FY2025: $12.06B.\n\nOperating Cost Ratio The operating cost ratio increased due to gains related to business portfolio refinement in 2024; investments to support future growth and the impacts of restructuring and other actions; partially offset by the revenue impacts of government programs, including the IRA-driven impacts on Medicare Part D plans; operating cost management; net portfolio divestitures in 2025 and decreased impacts related to the Change Healthcare cyberattack. [2] Taxes The effective income tax rate decreased due to tax benefits having significantly more impact due to lower pre-tax income in 2025, impacts of net portfolio divestitures, and due to non-deductible losses on the sale of subsidiary and subsidiaries held for sale in 2024. [2] While the effective tax rate decreased due to the factors above, total domestic premium, payroll and other taxes incurred increased primarily due to increased premiums and wages. [2] These taxes are recorded within operating costs on the Consolidated Statements of Operations. [2]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "UNH",
+          "fiscal_year": 2025,
+          "metric": "net_income",
+          "accession": "0000731766-26-000062",
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "UNH",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000731766-26-000062",
+          "chunk_id": 41323,
+          "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "UNH"
+        ],
+        "years": [
+          2025
+        ],
+        "metrics": [
+          "net_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h12",
+      "type": "hybrid",
+      "question": "How did Amazon's operating income change from 2023 to 2024, and what does it say about AWS?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 0.8333333333333334,
+      "answer_correct": true,
+      "latency_ms": 132,
+      "answer": "AMZN Operating income: FY2023 $36.85B; FY2024 $68.59B (+86.1% YoY). Change FY2023\u2192FY2024: $31.74B (+86.1%), CAGR +86.1%.\n\nOperating Income (Loss) Operating income (loss) by segment is as follows (in millions): 2023 2024 Operating Income (Loss) North America $ 14,877 $ 24,967 International (2,656) 3,792 AWS 24,631 39,834 [1] The increase in AWS operating income in absolute dollars in 2023, compared to the prior year, is primarily due to increased sales, partially offset by increased payroll and related expenses and spending on technology infrastructure, both of which were primarily driven by additional investments to support AWS business growth. [2] The increase in AWS operating income in 2024, compared to the prior year, is primarily due to increased sales, decreased payroll and related expenses, and a reduction in depreciation and amortization expense from our change in the estimated useful lives of our servers, partially offset by spending on technology infrastructure that was primarily driven by additional investments to support AWS business growth. [3] Operating Income (Loss) Operating income (loss) by segment is as follows (in millions): 2023 2024 Operating Income (Loss) North America $ 14,877 $ 24,967 International (2,656) 3,792 AWS 24,631 39,834 Consolidated $ 36,852 $ 68,593 Operating income was $36.9 billion and $68.6 billion for 2023 and 2024. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "AMZN",
+          "fiscal_year": 2023,
+          "metric": "operating_income",
+          "accession": "0001018724-26-000004",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "AMZN",
+          "fiscal_year": 2024,
+          "metric": "operating_income",
+          "accession": "0001018724-26-000004",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AMZN",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001018724-25-000004",
+          "chunk_id": 36359,
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AMZN",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001018724-24-000008",
+          "chunk_id": 36297,
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AMZN",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001018724-25-000004",
+          "chunk_id": 36361,
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "AMZN",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001018724-25-000004",
+          "chunk_id": 36360,
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "AMZN"
+        ],
+        "years": [
+          2023,
+          2024
+        ],
+        "metrics": [
+          "operating_income"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h13",
+      "type": "hybrid",
+      "question": "How much did Netflix's revenue grow in 2024 and what drove it?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 1,
+      "numbers_matched": 1,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 69,
+      "answer": "NFLX Revenue FY2024: $39.00B.\n\nWe also earn revenue from advertisements presented on our streaming service, consumer products, live events and various other sources. [1] Revenues earned from sources other than monthly membership fees were not a material component of streaming revenues for the years ended December 31, 2024, 2023, and 2022. [1] Streaming revenues $ 39,000,966 $ 33,640,458 $ 31,469,852 $ 5,360,508 16 % Streaming revenues for the year ended December 31, 2024 increased 16% as compared to the year ended December 31, 2023, primarily due to the growth in average paying memberships and price increases, partially offset by unfavorable changes in foreign exchange rates. [1] Sales and marketing $ 2,917,554 $ 2,657,883 $ 2,530,502 $ 259,671 10 % [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "NFLX",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0001065280-26-000034",
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000044/nflx-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001065280-25-000044",
+          "chunk_id": 9434,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000044/nflx-20241231.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NFLX",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001065280-25-000044",
+          "chunk_id": 9439,
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000044/nflx-20241231.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "NFLX"
+        ],
+        "years": [
+          2024
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h14",
+      "type": "hybrid",
+      "question": "How did Nike's revenue change from 2024 to 2025, and what challenges did it describe?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "citation_precision": 0.75,
+      "answer_correct": false,
+      "latency_ms": 138,
+      "answer": "NKE Revenue: FY2024 $51.36B; FY2025 $46.31B (-9.8% YoY). Change FY2024\u2192FY2025: -$5.05B (-9.8%), CAGR -9.8%.\n\nFISCAL 2024 NIKE BRAND REVENUE HIGHLIGHTS The following tables present NIKE Brand revenues disaggregated by reportable operating segment, distribution channel and major product line: \u2022NIKE, Inc. [1] Revenues increased 1%, as higher revenues in Greater China and Asia Pacific & Latin America (\"APLA\"), which each increased NIKE, Inc. [1] Revenues, increased 1% on both a reported and currency-neutral basis. [1] FISCAL 2025 NIKE BRAND REVENUE HIGHLIGHTS The following tables present NIKE Brand revenues disaggregated by reportable operating segment, distribution channel and major product line: \u2022NIKE, Inc. [2]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "NKE",
+          "fiscal_year": 2024,
+          "metric": "revenue",
+          "accession": "0000320187-26-000088",
+          "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018724000044/nke-20240531.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "NKE",
+          "fiscal_year": 2025,
+          "metric": "revenue",
+          "accession": "0000320187-26-000088",
+          "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018725000047/nke-20250531.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NKE",
+          "fiscal_year": 2024,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000320187-24-000044",
+          "chunk_id": 36915,
+          "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018724000044/nke-20240531.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "NKE",
+          "fiscal_year": 2025,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0000320187-25-000047",
+          "chunk_id": 36992,
+          "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018725000047/nke-20250531.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "NKE"
+        ],
+        "years": [
+          2024,
+          2025
+        ],
+        "metrics": [
+          "revenue"
+        ],
+        "sections": [],
+        "rank": null,
+        "sector": null
+      }
+    },
+    {
+      "id": "h15",
+      "type": "hybrid",
+      "question": "How did Disney's operating income change from 2023 to 2025, and what drove it?",
+      "verified": true,
+      "expected_route": "both",
+      "route": "both",
+      "route_correct": true,
+      "numbers_expected": 2,
+      "numbers_matched": 2,
+      "numeric_correct": true,
+      "recall_at_5": true,
+      "reciprocal_rank": 1.0,
+      "citation_precision": 1.0,
+      "answer_correct": true,
+      "latency_ms": 118,
+      "answer": "DIS Operating income: FY2023 $12.86B; FY2024 $15.60B (+21.3% YoY); FY2025 $17.55B (+12.5% YoY). Change FY2023\u2192FY2025: $4.69B (+36.4%), CAGR +16.8%.\n\nCash provided by operating activities of $6.0 billion for fiscal 2022 increased 8% or $436 million compared to $5.6 billion in fiscal 2021 due to higher operating cash flow at Experiences and, to a lesser extent, lower income tax payments and pension contributions, partially offset by lower operating cash flow at Entertainment and, to a lesser extent, a partial payment for the Content License Early Termination. [2] Higher operating cash disbursements were driven by increased operating expenses while higher operating cash receipts were due to revenue growth. [2] The EPS decrease was due to higher restructuring and impairment charges and lower operating income at Entertainment. [4] These decreases were partially offset by the comparison to the impact of the Content License Early Termination, higher operating income at Experiences in the current year compared to the prior year and investment gains in the current year compared to investment losses in the prior year. [4]",
+      "citations": [
+        {
+          "type": "xbrl",
+          "ticker": "DIS",
+          "fiscal_year": 2023,
+          "metric": "operating_income",
+          "accession": "0001744489-25-000155",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744489/000174448923000216/dis-20230930.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "DIS",
+          "fiscal_year": 2024,
+          "metric": "operating_income",
+          "accession": "0001744489-25-000155",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744489/000174448924000276/dis-20240928.htm"
+        },
+        {
+          "type": "xbrl",
+          "ticker": "DIS",
+          "fiscal_year": 2025,
+          "metric": "operating_income",
+          "accession": "0001744489-25-000155",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744489/000174448925000155/dis-20250927.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "DIS",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001744489-23-000216",
+          "chunk_id": 36054,
+          "url": "https://www.sec.gov/Archives/edgar/data/1744489/000174448923000216/dis-20230930.htm"
+        },
+        {
+          "type": "filing_text",
+          "ticker": "DIS",
+          "fiscal_year": 2023,
+          "section": "item7",
+          "section_label": "MD&A",
+          "accession": "0001744489-23-000216",
+          "chunk_id": 35974,
+          "url": "https://www.sec.gov/Archives/edgar/data/1744489/000174448923000216/dis-20230930.htm"
+        }
+      ],
+      "plan": {
+        "route": "both",
+        "tickers": [
+          "DIS"
+        ],
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "metrics": [
+          "operating_income"
+        ],
+        "sections": [
+          "item7"
+        ],
+        "rank": null,
+        "sector": null
+      }
+    }
+  ]
+}

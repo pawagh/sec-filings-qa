@@ -1,0 +1,26 @@
+# Local cluster: images built locally and side-loaded with `kind load docker-image`.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources: [../../base]
+images:
+  - { name: secqa-api, newName: secqa-api, newTag: dev }
+  - { name: secqa-ui, newName: secqa-ui, newTag: dev }
+patches:
+  - target: { kind: Deployment, name: secqa-api }
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: IfNotPresent
+      - op: add
+        path: /spec/template/spec/initContainers/0/imagePullPolicy
+        value: IfNotPresent
+  - target: { kind: Deployment, name: secqa-ui }
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: IfNotPresent
+  - target: { kind: CronJob, name: secqa-etl }
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/imagePullPolicy
+        value: IfNotPresent

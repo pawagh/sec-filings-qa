@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secqa-ui
+  labels: { app: secqa-ui }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: secqa-ui }
+  template:
+    metadata:
+      labels: { app: secqa-ui }
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+      containers:
+        - name: ui
+          image: secqa-ui
+          ports: [{ containerPort: 8501, name: http }]
+          env:
+            - { name: API_URL, value: http://secqa-api }
+          readinessProbe:
+            httpGet: { path: /_stcore/health, port: http }
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { memory: 512Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secqa-ui
+spec:
+  selector: { app: secqa-ui }
+  ports: [{ name: http, port: 80, targetPort: http }]

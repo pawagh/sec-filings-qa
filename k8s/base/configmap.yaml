@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: secqa-config
+data:
+  FISCAL_YEARS: "2023,2024,2025"
+  EMBED_MODEL: ibm-granite/granite-embedding-small-english-r2
+  LLM_PROVIDER: none          # set to gemini and add GEMINI_API_KEY to the Secret to enable LLM answers
+  GEMINI_MODEL: gemini-2.5-flash
+  SEC_MAX_RPS: "8"

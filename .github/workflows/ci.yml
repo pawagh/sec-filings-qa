@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy the gke overlay after building"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: secqa, POSTGRES_PASSWORD: secqa, POSTGRES_DB: secqa_test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U secqa" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://secqa:secqa@localhost:5432/secqa_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - name: Install (CPU torch)
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -e ".[api,dev]"
+      - name: Lint
+        run: ruff check src tests scripts eval
+      - name: Validate Kubernetes manifests
+        run: |
+          kubectl kustomize k8s/overlays/kind > /dev/null
+          kubectl kustomize k8s/overlays/gke > /dev/null
+      - name: Unit + integration tests
+        run: pytest -q
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [api, ui]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/${{ matrix.image }}.Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            ${{ env.REGISTRY }}/secqa-${{ matrix.image }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/secqa-${{ matrix.image }}:latest
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
+
+  deploy:
+    # Manual only: GKE costs money while it runs.
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    permissions: { contents: read, id-token: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/get-gke-credentials@v2
+        with: { cluster_name: secqa, location: us-central1 }
+      - name: Apply overlay pinned to this commit's images
+        working-directory: k8s/overlays/gke
+        run: |
+          kustomize edit set image secqa-api=${{ env.REGISTRY }}/secqa-api:${{ github.sha }} \
+                                   secqa-ui=${{ env.REGISTRY }}/secqa-ui:${{ github.sha }}
+          kubectl apply -k .
+          kubectl -n secqa rollout status deploy/secqa-api --timeout=10m

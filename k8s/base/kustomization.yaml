@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: secqa
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - postgres.yaml
+  - api.yaml
+  - ui.yaml
+  - ingress.yaml
+  - etl-cronjob.yaml
+labels:
+  - pairs: { app.kubernetes.io/part-of: secqa }

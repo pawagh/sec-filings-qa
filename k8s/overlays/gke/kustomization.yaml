@@ -1,0 +1,35 @@
+# GKE Autopilot + Cloud SQL (Postgres 16 with the pgvector extension enabled).
+# DATABASE_URL in secqa-secrets points at the Cloud SQL private IP. The in-cluster StatefulSet is removed.
+# COST: Autopilot bills per pod resource request. Run `make gke-down` when you're done.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources: [../../base]
+images:
+  - { name: secqa-api, newName: ghcr.io/pawagh/secqa-api, newTag: latest }
+  - { name: secqa-ui, newName: ghcr.io/pawagh/secqa-ui, newTag: latest }
+patches:
+  - target: { kind: StatefulSet, name: postgres }
+    patch: |
+      $patch: delete
+      apiVersion: apps/v1
+      kind: StatefulSet
+      metadata: { name: postgres }
+  - target: { kind: Service, name: postgres }
+    patch: |
+      $patch: delete
+      apiVersion: v1
+      kind: Service
+      metadata: { name: postgres }
+  - target: { kind: Ingress, name: secqa }
+    patch: |
+      - op: remove
+        path: /spec/ingressClassName
+      - op: add
+        path: /metadata/annotations
+        value: { kubernetes.io/ingress.class: gce }
+      - op: replace
+        path: /spec/rules/0/host
+        value: secqa.example.com
+      - op: replace
+        path: /spec/rules/1/host
+        value: api.secqa.example.com

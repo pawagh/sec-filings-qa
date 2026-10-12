@@ -1,0 +1,8 @@
+.venv
+data
+.git
+eval/results
+**/__pycache__
+.pytest_cache
+.ruff_cache
+k8s

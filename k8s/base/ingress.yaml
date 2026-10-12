@@ -1,0 +1,20 @@
+# *.localtest.me resolves to 127.0.0.1, so this works on kind with no /etc/hosts edits.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: secqa
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: secqa.localtest.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: secqa-ui, port: { name: http } } }
+    - host: api.secqa.localtest.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: secqa-api, port: { name: http } } }

@@ -1,0 +1,30 @@
+metric,label,taxonomy,concept,unit,period_type,priority
+revenue,Revenue,us-gaap,Revenues,USD,duration,1
+revenue,Revenue,us-gaap,RevenueFromContractWithCustomerExcludingAssessedTax,USD,duration,2
+revenue,Revenue,us-gaap,SalesRevenueNet,USD,duration,3
+revenue,Revenue,us-gaap,RevenueFromContractWithCustomerIncludingAssessedTax,USD,duration,4
+revenue,Revenue,us-gaap,RevenuesNetOfInterestExpense,USD,duration,5
+cost_of_revenue,Cost of revenue,us-gaap,CostOfGoodsAndServicesSold,USD,duration,1
+cost_of_revenue,Cost of revenue,us-gaap,CostOfRevenue,USD,duration,2
+cost_of_revenue,Cost of revenue,us-gaap,CostOfGoodsSold,USD,duration,3
+gross_profit,Gross profit,us-gaap,GrossProfit,USD,duration,1
+rd_expense,R&D expense,us-gaap,ResearchAndDevelopmentExpense,USD,duration,1
+rd_expense,R&D expense,us-gaap,ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost,USD,duration,2
+sga_expense,SG&A expense,us-gaap,SellingGeneralAndAdministrativeExpense,USD,duration,1
+operating_income,Operating income,us-gaap,OperatingIncomeLoss,USD,duration,1
+net_income,Net income,us-gaap,NetIncomeLoss,USD,duration,1
+net_income,Net income,us-gaap,ProfitLoss,USD,duration,2
+eps_diluted,Diluted EPS,us-gaap,EarningsPerShareDiluted,USD/shares,duration,1
+diluted_shares,Diluted weighted-average shares,us-gaap,WeightedAverageNumberOfDilutedSharesOutstanding,shares,duration,1
+operating_cash_flow,Operating cash flow,us-gaap,NetCashProvidedByUsedInOperatingActivities,USD,duration,1
+capex,Capital expenditures,us-gaap,PaymentsToAcquirePropertyPlantAndEquipment,USD,duration,1
+dividends_paid,Dividends paid,us-gaap,PaymentsOfDividends,USD,duration,1
+dividends_paid,Dividends paid,us-gaap,PaymentsOfDividendsCommonStock,USD,duration,2
+share_repurchases,Share repurchases,us-gaap,PaymentsForRepurchaseOfCommonStock,USD,duration,1
+total_assets,Total assets,us-gaap,Assets,USD,instant,1
+total_liabilities,Total liabilities,us-gaap,Liabilities,USD,instant,1
+stockholders_equity,Stockholders' equity,us-gaap,StockholdersEquity,USD,instant,1
+stockholders_equity,Stockholders' equity,us-gaap,StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,USD,instant,2
+cash,Cash and equivalents,us-gaap,CashAndCashEquivalentsAtCarryingValue,USD,instant,1
+long_term_debt,Long-term debt,us-gaap,LongTermDebtNoncurrent,USD,instant,1
+long_term_debt,Long-term debt,us-gaap,LongTermDebt,USD,instant,2
