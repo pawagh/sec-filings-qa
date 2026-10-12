@@ -2,7 +2,7 @@
 
 This is a tightened version of the original project brief. It keeps the same goal and phases. It adds the
 EDGAR details that would otherwise break the build, sets acceptance criteria for each phase, and fixes
-the evaluation design so the numbers you put on a resume can be defended.
+the evaluation design so its results can be defended.
 
 ## Goal
 
@@ -76,7 +76,7 @@ in under 200 ms on the loaded data. `pytest tests/` passes against an ephemeral 
   - citation accuracy (share of cited sources that match gold targets)
   - answer correctness (key-fact coverage; optional LLM-as-judge when a key is set)
 
-  Results are written to `eval/results/<timestamp>.json` plus a markdown summary, so every number on the resume
+  Results are written to `eval/results/<timestamp>.json` plus a markdown summary, so every reported number
   traces back to a file.
 
 ## Phase 3 — Docker + Kubernetes + CI/CD
@@ -95,10 +95,3 @@ in under 200 ms on the loaded data. `pytest tests/` passes against an ephemeral 
 - **CI (GitHub Actions):** ruff, then pytest with a `pgvector` service container, then building both images, then pushing to
   GHCR on `main`, then deploying (manual-approval `workflow_dispatch` job that applies the overlay).
 - **Cost guard:** GKE Autopilot only on demand. `make gke-down` deletes the cluster, and the README warns about it.
-
-## Resume bullet (fill in from `eval/results/`)
-
-*"Built a filings Q&A system over N SEC 10-Ks (50 S&P 500 companies): idempotent PostgreSQL ETL with
-data-quality auditing, hybrid pgvector + full-text RAG with RRF (LangChain, IBM Granite embeddings), and
-parameterized SQL tool routing; reached X% numeric exact-match and Y recall@5 on a 50-question
-hand-verified eval; deployed on Kubernetes (kind/GKE) with GitHub Actions CI/CD."*

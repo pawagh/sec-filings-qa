@@ -50,19 +50,19 @@ From `eval/results/latest.md` (rule router, extractive answers, no LLM):
 | full-text only + filters | 100% | 0.86 |
 | full-text only, no filters | 26.7% | 0.13 |
 
-**Read these numbers honestly before you quote them.**
+**Caveats**
 - The 50 questions were written alongside the router, so routing and entity extraction are tuned to them.
-  Write 15–20 **held-out** questions yourself (`eval/spec.py`, then `make eval`) and report those numbers.
+  A held-out question set (add to `eval/spec.py`, then `make eval`) gives a fairer measure.
 - Gold numbers are checked automatically: each figure must appear in that company's 10-K HTML.
-  `build_gold.py` reads the HTML with its own extractor, independent of the ETL pipeline. Spot-check about
-  10 by hand before you call the set "hand-verified".
+  `build_gold.py` reads the HTML with its own extractor, independent of the ETL pipeline. They have not
+  been reviewed by hand.
 - Hybrid answers score 60% because extractive mode stitches retrieved sentences together instead of
   writing an answer. Set `LLM_PROVIDER=gemini` and `GEMINI_API_KEY`, then rerun `make eval` (and
   `--router llm`) to measure the LLM path.
 - Metadata filtering accounts for most of the retrieval quality. Full-text search with filters is about as
-  good as hybrid on this set, because the questions name distinctive terms. That's worth saying in an interview.
+  good as hybrid on this set, because the questions name distinctive terms.
 
-## Things the pipeline caught (good interview material)
+## Data issues found during the build
 
 - **companyfacts `fy` is the filing's fiscal year, not the period's.** A FY2024 10-K tags FY2022 values
   `fy=2024`. The pipeline derives the fiscal year from the period end date and keeps every as-reported
@@ -85,19 +85,21 @@ Remaining data-quality warnings, logged in `dq_audit` on purpose:
 
 ## Quickstart
 
-Needs Python 3.12, `uv` and Docker.
+Needs Python 3.11+, Docker, and about 2 GB of disk for the SEC downloads, model and database.
+`make setup` uses [`uv`](https://docs.astral.sh/uv/); without it, run
+`python3.12 -m venv .venv && .venv/bin/pip install -e ".[api,ui,dev]"` instead.
 
 ```bash
 make setup
 ```
 ```bash
+cp .env.example .env   # then set SEC_USER_AGENT to your app name and email
+```
+```bash
 make db
 ```
 ```bash
-export SEC_USER_AGENT="secqa-portfolio-project you@example.com"   # SEC requires a contact email
-```
-```bash
-make etl          # about 10 min first time: facts, 10-K text, embeddings (cached under data/raw)
+make etl          # about 10 min first time: facts, 10-K text, embeddings (raw downloads cached in data/raw)
 ```
 ```bash
 make test         # 36 tests, including integration tests against Postgres
@@ -106,7 +108,7 @@ make test         # 36 tests, including integration tests against Postgres
 make analytics    # run the 13 SQL queries with timings
 ```
 ```bash
-make eval         # writes eval/results/<timestamp>.{json,md}
+make eval         # needs the full ETL; writes eval/results/<timestamp>.{json,md}
 ```
 ```bash
 make api          # http://localhost:8000/docs
@@ -158,11 +160,3 @@ eval/              spec.py → build_gold.py → questions.jsonl → run_eval.py
 k8s/               kustomize base + kind/gke overlays
 .github/workflows/ CI
 ```
-
-## Resume bullet (numbers from `eval/results/`; re-measure on your held-out set)
-
-*Built a filings Q&A system over 150 SEC 10-Ks (50 S&P 500 companies): idempotent PostgreSQL ETL with a
-7-check data-quality audit, hybrid pgvector + full-text RAG with RRF and metadata filtering (IBM Granite
-embeddings, LangChain tool-calling), and parameterized SQL tools; reached 100% numeric exact match and
-100% recall@5 on a 50-question eval whose gold answers were checked against the filings (metadata
-filtering lifted recall@5 from 77% to 100%); deployed on Kubernetes (kind, GKE-ready) with GitHub Actions CI.*
